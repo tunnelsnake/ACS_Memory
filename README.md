@@ -1,5 +1,5 @@
 # ACS_Memory
-A repository to hold the findings of an investigation of memory latency vs. throughput using Intel's Memory Latency Checker (MLC) tool.
+A repository to hold the findings of an investigation of memory latency vs. throughput using Intel's Memory Latency Checker (MLC) tool and Flexible IO Tester (FIO).
 
 # Objective
 To conduct an impromptu investigation into the effects of block size and read write ratio and how they relate to throughput and latency in memory and storage devices.
