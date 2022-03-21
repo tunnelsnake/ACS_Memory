@@ -30,6 +30,23 @@ M.2 SSD / PCIe NVMe, PCIe 3.0 x 4, 32Gb/s
 Intel MLC allows you to directly test injection delay and measure it against throughput and latency.  It additionally allows you to change the block size for reads and writes, as well as the read/write ratio.  Block sizes of 64B and 256B are used as well as read write ratios of 2:1, 3:1, 1:1.
 
 ## Memory Test Results
+The following graphs relate latency to throughput for a variety of read-write ratios. Notice the inverse proportional relationship between injection delay and throughput.  This corresponds directly to Little's law.  A greater injection delay leads to a lower Lambda, which decreases throughput performance.  All graphs have the same scale and therefore can be compared.  The left hand y-axis denotes throughput, the right hand y-axis denotes access latency.
+
+![](output/mlc_2_64.png)
+![](output/mlc_2_256.png)
+![](output/mlc_3_64.png)
+![](output/mlc_3_256.png)
+![](output/mlc_4_64.png)
+![](output/mlc_4_256.png)
+![](output/mlc_5_64.png)
+![](output/mlc_5_256.png)
+
+
+## Memory Test Conclusions
+The results yielded by this investigation clearly show the tradeoffs involved between throughput and latency in a memory device.  In memory intensive applications, the way that a programmer accesses memory can have a huge result on their overall computation time as memory overhead in modern CPUs is much greater than instruction overhead.  An application that constantly reads and writes to memory is a performance liability on modern architecture and measures must be taken to minimize this overhead.  Using MLC to profile the system's memory may yield more interesting results than simply throughput vs. latency, however, its main purpose is to observe the tradeoff discussed above and make decisions based upon application behavior.
+
+## Future Applications (Memory Profiling)
+Overall, in the opinion of the author, MLC should only be used to increase application performance if bottlenecks are apparent and compiler optimizations do not help.  MLC may provide a window into best-case performance for memory devices that is not readily apparent from statistics gathered within an application.
 
 ## Testing SSD
 FIO allows you to specify a wide variety of tasks to perform on a given storage device.  The tests conducted herein manipulate the block size between 4KB, 32KB, and 128KB and also tests read write ratios of read-only, 1:1, 2:1, 3:1, and 4:1
